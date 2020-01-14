@@ -10,7 +10,7 @@ class BenchmarkTest extends \PHPUnit\Framework\TestCase
     public function decideNode()
     {
         $keys = [];
-        for ($i = 0; $i < 10000; $i++) {
+        for ($i = 0; $i < 100000; $i++) {
             $keys[] = md5($i);
         }
 
@@ -33,7 +33,7 @@ class BenchmarkTest extends \PHPUnit\Framework\TestCase
     public function modifyNodeNumber()
     {
         $keys = [];
-        for ($i = 0; $i < 10000; $i++) {
+        for ($i = 0; $i < 100000; $i++) {
             $keys[] = md5($i);
         }
 

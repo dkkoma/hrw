@@ -19,14 +19,15 @@ class Hrw
      */
     public function decideNode($key)
     {
-        $rendezvousKeys = [];
+        $decideKey = null;
+        $maxKey = null;
         foreach($this->nodes as $nodeKey => $node) {
             $rendezvousKey = $this->calcRendezvousKey($key, $node);
-            $rendezvousKeys[$rendezvousKey] = $nodeKey;
+            if ($maxKey < $rendezvousKey) {
+                $decideKey = $nodeKey;
+                $maxKey = $rendezvousKey;
+            }
         }
-
-        ksort($rendezvousKeys);
-        $decideKey = array_shift($rendezvousKeys);
 
         return $this->nodes[$decideKey];
     }
