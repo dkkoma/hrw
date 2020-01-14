@@ -1,0 +1,26 @@
+{
+    "name": "dkkoma/hrw",
+    "description": "Rendezvous(highest random weight) hashing",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daisuke Komazaki",
+            "email": "dkkoma@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hrw\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Hrw\\Tests\\": "tests/"
+        }
+    }
+}
