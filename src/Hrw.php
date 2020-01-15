@@ -13,15 +13,20 @@ class Hrw
 
     /**
      * pick a node by Rendezvous hashing method
-     * @param $key
+     * @param string $key
      * @return mixed node
      */
-    public function pick($key)
+    public function pick(string $key)
     {
         return $this->select($key, $this->nodes);
     }
 
-    private function select($key, $nodes)
+    /**
+     * @param string $key
+     * @param array $nodes
+     * @return mixed
+     */
+    private function select(string $key, array $nodes)
     {
         $winner = null;
         $maxWeight = null;
@@ -37,11 +42,11 @@ class Hrw
     }
 
     /**
-     * @param $key
+     * @param string $key
      * @param $seed
      * @return string
      */
-    private function calcRendezvousWeight($key, $seed)
+    private function calcRendezvousWeight(string $key, $seed) : string
     {
         return md5($key . $seed);
     }
