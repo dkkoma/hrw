@@ -33,7 +33,7 @@ class Hrw
 
     /**
      * @param $key
-     * @param $node
+     * @param $seed
      * @return string
      */
     private function calcRendezvousWeight($key, $seed)

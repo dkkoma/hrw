@@ -18,7 +18,7 @@ $hrw = new Hrw\Hrw($nodes);
 
 $key = 'test-key';
 
-$node = $hrw->decideNode($key); // node-2
+$node = $hrw->pick($key); // node-2
 ```
 
 ## FYI
