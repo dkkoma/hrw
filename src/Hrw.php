@@ -11,25 +11,24 @@ class Hrw
         $this->nodes = $nodes;
     }
 
-    /**
-     * decide node by Rendezvous hashing method
-     * https://en.wikipedia.org/wiki/Rendezvous_hashing
-     * @param $key
-     * @return mixed node
-     */
-    public function decideNode($key)
+    public function pick($key)
     {
-        $decideKey = null;
-        $maxKey = null;
-        foreach($this->nodes as $nodeKey => $node) {
-            $rendezvousKey = $this->calcRendezvousKey($key, $node);
-            if ($maxKey < $rendezvousKey) {
-                $decideKey = $nodeKey;
-                $maxKey = $rendezvousKey;
+        return $this->select($key, $this->nodes);
+    }
+
+    private function select($key, $nodes)
+    {
+        $winner = null;
+        $maxWeight = null;
+        foreach($nodes as $nodeKey => $node) {
+            $seed = is_array($node) ? $nodeKey : $node;
+            $weight = $this->calcRendezvousWeight($key, $seed);
+            if ($maxWeight < $weight) {
+                $winner = $node;
+                $maxWeight = $weight;
             }
         }
-
-        return $this->nodes[$decideKey];
+        return is_array($winner) ? $this->select($key, $winner) : $winner;
     }
 
     /**
@@ -37,8 +36,8 @@ class Hrw
      * @param $node
      * @return string
      */
-    private function calcRendezvousKey($key, $node)
+    private function calcRendezvousWeight($key, $seed)
     {
-        return md5($key . $node);
+        return md5($key . $seed);
     }
 }
