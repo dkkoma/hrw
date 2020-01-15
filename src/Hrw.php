@@ -11,6 +11,11 @@ class Hrw
         $this->nodes = $nodes;
     }
 
+    /**
+     * pick a node by Rendezvous hashing method
+     * @param $key
+     * @return mixed node
+     */
     public function pick($key)
     {
         return $this->select($key, $this->nodes);
